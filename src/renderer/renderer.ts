@@ -86,13 +86,16 @@ export class Renderer {
         }
     }
 
-    async renderAndRun<T>(url: string, fn: (page: any) => Promise<T>, options?: RenderPageOptions): Promise<T> {
+    async renderAndRun<T>(url: string, fn: (page: any) => Promise<T>, options?: RenderPageOptions & { screenshotPath?: string }): Promise<T> {
         return this.withPage(async (page) => {
             const waitUntil = options?.waitUntil ?? ["load", "domcontentloaded", "networkidle2"];
             const timeout = options?.timeoutMs ?? this.options.timeoutMs ?? 30000;
             try {
                 await page.goto(url, { waitUntil: waitUntil as any, timeout });
             } catch { }
+            if (options?.screenshotPath) {
+                try { await page.screenshot({ path: options.screenshotPath, fullPage: true }); } catch { }
+            }
             return fn(page);
         }, { blockMedia: options?.blockMedia });
     }

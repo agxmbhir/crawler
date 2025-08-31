@@ -10,20 +10,25 @@ async function main(): Promise<void> {
         await renderer.init();
         const extractor = new Extractor();
         const crawler = new Crawler(renderer, extractor);
-        const { pages, graph } = await crawler.crawl({
-            seeds: ["https://cloud.google.com/?hl=en"],
+        const { pages, graph, actionGraph } = await crawler.crawl({
+            seeds: ["https://ant.design/components/modal"],
             maxDepth: 1,
             maxPages: 10,
             sameOrigin: true,
-            delayMs: 250,
+            delayMs: 0,
+            concurrency: 4,
+            discoverTransitions: true,
+            transitionsPerPage: 12,
+            screenshotDir: path.join(process.cwd(), "out", "screens"),
         });
         console.log(`visited pages: ${pages.length}`);
-        console.log(pages.map(p => ({ url: p.url, depth: p.depth, actions: p.actions.length })));
+        console.log(pages.map(p => ({ url: p.url, depth: p.depth, actions: p.actions.length, screenshot: p.screenshotPath })));
         const outDir = path.join(process.cwd(), "out");
         const outFile = path.join(outDir, "site.dot");
         fs.mkdirSync(outDir, { recursive: true });
-        fs.writeFileSync(outFile, toDot({ pages, graph }), "utf8");
+        fs.writeFileSync(outFile, toDot({ pages, graph, actionGraph }), "utf8");
         console.log(`DOT graph written to: ${outFile}`);
+        console.log(`Screenshots saved to: ${path.join(process.cwd(), "out", "screens")}`);
     } finally {
         await renderer.close();
     }
