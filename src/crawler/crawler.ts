@@ -11,6 +11,7 @@ export type CrawlOptions = {
 
 export type PageVisit = {
     url: string;
+    title: string;
     depth: number;
     actions: Action[];
 };
@@ -82,10 +83,11 @@ export class Crawler {
                 try { return new URL(url).origin; } catch { return null; }
             })();
 
-            const { actions, currentUrl } = await this.renderer.renderAndRun(url, async (page: any) => {
+            const { actions, currentUrl, title } = await this.renderer.renderAndRun(url, async (page: any) => {
                 const items = await this.extractor.extract(page);
                 const href = await page.url();
-                return { actions: items, currentUrl: href as string };
+                const t = await page.title().catch(() => "");
+                return { actions: items, currentUrl: href as string, title: t as string };
             }, { blockMedia: true });
 
             const normalized = normalizeUrl(currentUrl);
@@ -110,7 +112,7 @@ export class Crawler {
             }
 
             graph[normalized] = nextUrls;
-            pages.push({ url: normalized, depth, actions });
+            pages.push({ url: normalized, title, depth, actions });
 
             if (delayMs > 0) {
                 await sleep(delayMs);
@@ -125,6 +127,19 @@ export function toDot(result: CrawlResult): string {
     function esc(s: string): string {
         return s.replace(/\\/g, "\\\\").replace(/"/g, "\\\"");
     }
+    function labelFor(url: string): string {
+        const pv = result.pages.find(p => p.url === url);
+        const title = pv?.title?.trim();
+        if (title) return title.length > 100 ? title.slice(0, 97) + "…" : title;
+        try {
+            const u = new URL(url);
+            const path = u.pathname === "/" ? "/" : u.pathname.replace(/\/+$/, "");
+            const label = `${u.hostname}${path}`;
+            return label.length > 100 ? label.slice(0, 97) + "…" : label;
+        } catch {
+            return url.length > 100 ? url.slice(0, 97) + "…" : url;
+        }
+    }
     const lines: string[] = [];
     lines.push("digraph G {");
     lines.push("  rankdir=LR;");
@@ -135,7 +150,9 @@ export function toDot(result: CrawlResult): string {
         for (const v of outs) nodes.add(v);
     }
     for (const n of nodes) {
-        lines.push(`  "${esc(n)}" [label="${esc(n)}"];`);
+        const label = esc(labelFor(n));
+        const tooltip = esc(n);
+        lines.push(`  "${esc(n)}" [label="${label}", tooltip="${tooltip}"];`);
     }
     // Edges
     for (const [src, outs] of Object.entries(result.graph)) {
