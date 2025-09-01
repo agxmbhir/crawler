@@ -4,14 +4,30 @@ import { Crawler, toDot } from "./crawler";
 import * as fs from "fs";
 import * as path from "path";
 
+async function sleep(ms: number): Promise<void> { return new Promise((r) => setTimeout(r, ms)); }
+
 async function main(): Promise<void> {
-    const renderer = new Renderer({ headless: true, userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36" });
+    const manualLoginUrl = process.env.MANUAL_LOGIN_URL; // optional
+    const loginWaitMs = Number(process.env.LOGIN_WAIT_MS || 120000); // default 3 minutes
+    const seedUrl = process.env.SEED_URL || "https://ant.design/components/modal";
+
+    const renderer = new Renderer({ headless: manualLoginUrl ? false : true, userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36" });
     try {
         await renderer.init();
+
+        if (manualLoginUrl) {
+            console.log(`Opening login page and waiting ${Math.round(loginWaitMs / 1000)}s for you to complete login...`);
+            await renderer.withPage(async (page: any) => {
+                await page.goto(manualLoginUrl, { waitUntil: ["load", "domcontentloaded"] });
+                await sleep(loginWaitMs);
+            }, { blockMedia: false });
+            console.log("Continuing with crawl using your session...");
+        }
+
         const extractor = new Extractor();
         const crawler = new Crawler(renderer, extractor);
         const { pages, graph, actionGraph } = await crawler.crawl({
-            seeds: ["https://ant.design/components/modal"],
+            seeds: [seedUrl],
             maxDepth: 1,
             maxPages: 10,
             sameOrigin: true,

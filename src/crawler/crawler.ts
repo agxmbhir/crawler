@@ -173,9 +173,13 @@ export class Crawler {
                             actionEdges.push({ to: normalized, label: trigger, type: "transition", options: opts.slice(0, 12) });
                         }
                     }
+                    // Suppress simple click edges if a transition edge exists for the same trigger label
+
+                    const transitionLabels = new Set<string>(actionEdges.filter(e => e.type === 'transition').map(e => e.label));
+                    const filteredEdges = actionEdges.filter(e => !(e.type !== 'navigate' && e.options == null && transitionLabels.has(e.label)));
 
                     graph[normalized] = nextUrls;
-                    actionGraph[normalized] = actionEdges;
+                    actionGraph[normalized] = filteredEdges;
                     pages.push({ url: normalized, title: res.title, depth: input.depth, actions: res.actions, screenshotPath: res.screenshotPath });
 
                     const childDepth = input.depth + 1;
@@ -211,15 +215,12 @@ export function toDot(result: CrawlResult): string {
         return s.replace(/\\/g, "\\\\").replace(/"/g, "\\\"");
     }
     function labelFor(url: string): string {
-        const pv = result.pages.find(p => p.url === url);
-        const title = pv?.title?.trim();
-        if (title) return title.length > 100 ? title.slice(0, 97) + "…" : title;
         try {
             const u = new URL(url);
             const pathq = `${u.pathname}${u.search}` || "/";
-            return pathq.length > 100 ? pathq.slice(0, 97) + "…" : pathq;
+            return pathq.length > 120 ? pathq.slice(0, 117) + "…" : pathq;
         } catch {
-            return url.length > 100 ? url.slice(0, 97) + "…" : url;
+            return url.length > 120 ? url.slice(0, 117) + "…" : url;
         }
     }
 

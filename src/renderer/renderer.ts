@@ -82,7 +82,13 @@ export class Renderer {
             await this.configurePage(page, opts?.blockMedia);
             return await fn(page);
         } finally {
-            await page.close();
+            try {
+                if (typeof (page as any).isClosed === 'function') {
+                    if (!(page as any).isClosed()) await page.close().catch(() => { });
+                } else {
+                    await page.close().catch(() => { });
+                }
+            } catch { }
         }
     }
 
@@ -154,7 +160,7 @@ export class Renderer {
         const currentUrl: string = page.url();
 
         page.off("console", consoleListener);
-        await page.close();
+        try { if (!(page as any).isClosed?.()) await page.close(); } catch { }
 
         return {
             url: currentUrl,

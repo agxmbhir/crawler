@@ -65,36 +65,36 @@ export class Extractor {
                     return (el as any).disabled === true || el.getAttribute("aria-disabled") === "true";
                 }
 
-                function nearestContainer(el: Element): Element {
-                    let curr: Element | null = el;
-                    let depth = 0;
-                    while (curr && depth < 5) {
-                        const name = curr.tagName.toLowerCase();
-                        const role = (curr.getAttribute("role") || "").toLowerCase();
-                        const cls = (curr.getAttribute("class") || "");
-                        if (role === "group" || role === "region" || role === "dialog" || name === "section" || /card|panel|container|modal|dropdown|menu/.test(cls)) {
-                            return curr;
-                        }
-                        curr = curr.parentElement;
-                        depth++;
-                    }
-                    return el.parentElement || el;
+                function excludeGlobal(el: Element): boolean {
+                    const tag = el.tagName.toLowerCase();
+                    if (tag === 'header' || tag === 'nav' || tag === 'aside') return true;
+                    const st = window.getComputedStyle(el as HTMLElement);
+                    const r = (el as HTMLElement).getBoundingClientRect();
+                    if ((st.position === 'fixed' || st.position === 'sticky') && r.height < 140) return true;
+                    return false;
                 }
 
-                function gatherOptions(scope: Element): string[] {
-                    const opts: string[] = [];
-                    const selectors = ["button", "[role='button']", "a[href]", "[data-action]", "[data-testid]", "[tabindex]"];
-                    for (const q of selectors) {
-                        for (const el of Array.from(scope.querySelectorAll(q))) {
-                            if (!isVisible(el)) continue;
-                            const lbl = labelOf(el);
-                            if (!lbl) continue;
-                            if (opts.length >= 8) return opts;
-                            opts.push(lbl);
-                        }
+                function pickPrimaryRegion(): Element {
+                    const main = document.querySelector('[role="main"]');
+                    if (main && isVisible(main as Element)) return main as Element;
+                    const vw = window.innerWidth, vh = window.innerHeight;
+                    const cx = vw / 2, cy = vh / 2;
+                    let best: { el: Element; score: number } | null = null;
+                    const nodes = Array.from(document.body.querySelectorAll('*')) as Element[];
+                    for (const el of nodes) {
+                        if (!isVisible(el) || excludeGlobal(el)) continue;
+                        const st = window.getComputedStyle(el as HTMLElement);
+                        if (st.position === 'fixed' || st.position === 'sticky') continue;
+                        const r = (el as HTMLElement).getBoundingClientRect();
+                        const dist = Math.hypot((r.left + r.width / 2) - cx, (r.top + r.height / 2) - cy);
+                        const area = r.width * r.height;
+                        const score = area - dist * 50;
+                        if (!best || score > best.score) best = { el, score };
                     }
-                    return Array.from(new Set(opts));
+                    return best?.el || document.body;
                 }
+
+                const primaryRegion = pickPrimaryRegion();
 
                 const queries = [
                     "a[href]",
@@ -109,7 +109,9 @@ export class Extractor {
                     "label[for]"
                 ];
 
-                const scopeRoots: Element[] = [document.body, ...Array.from(document.querySelectorAll("[role='dialog'], .modal, .dropdown-menu, [role='menu']"))];
+                // Also search within dialogs/menus if they are present
+                const overlayRoots = Array.from(document.querySelectorAll("[role='dialog'], dialog, [aria-modal='true'], .modal, .dropdown-menu, [role='menu']")) as Element[];
+                const scopeRoots: Element[] = [primaryRegion, ...overlayRoots];
 
                 const out: Action[] = [] as any;
                 const seen = new Set<Element>();
@@ -148,13 +150,26 @@ export class Extractor {
                             }
 
                             const label = labelOf(el);
-                            if (!label && tag !== "a") continue;
+                            if (!label && tag !== "a") continue; // skip unlabeled non-links
                             const selector = toSelector(el);
 
                             let options: string[] | undefined = undefined;
                             if (type !== "navigate") {
-                                const container = nearestContainer(el);
-                                options = gatherOptions(container).filter(o => o !== label).slice(0, 8);
+                                // best-effort local options from nearest container
+                                let container: Element = el.parentElement || el;
+                                for (let i = 0; i < 4 && container.parentElement; i++) container = container.parentElement;
+                                const opts: string[] = [];
+                                for (const q2 of ["button", "[role='button']", "a[href]", "input[type='submit']", "input[type='button']"]) {
+                                    for (const c of Array.from(container.querySelectorAll(q2))) {
+                                        if (!isVisible(c)) continue;
+                                        const l2 = labelOf(c);
+                                        if (!l2 || l2 === label) continue;
+                                        opts.push(l2);
+                                        if (opts.length >= 8) break;
+                                    }
+                                    if (opts.length >= 8) break;
+                                }
+                                options = Array.from(new Set(opts));
                             }
 
                             out.push({ type, label, href, selector, options });
@@ -294,6 +309,10 @@ export class Extractor {
 
             const tryOnce = async (): Promise<Action[]> => {
                 try {
+                    // Click coordinates (center of element)
+                    let cx = 0, cy = 0;
+                    try { const b = await handle.boundingBox(); if (b) { cx = b.x + b.width / 2; cy = b.y + b.height / 2; } } catch { }
+
                     const beforeFocus: string = await page.evaluate(() => {
                         const ae = document.activeElement as HTMLElement | null;
                         return ae ? (ae.innerText || ae.getAttribute('aria-label') || ae.tagName).slice(0, 120) : '';
@@ -301,8 +320,6 @@ export class Extractor {
 
                     await handle.hover().catch(() => { });
                     await handle.click({ delay: 10 }).catch(() => { });
-
-                    const addedPathsPromise = trackAddedNodes(page, 1200);
 
                     await Promise.race([
                         page.waitForFunction((bf: string) => {
@@ -314,9 +331,7 @@ export class Extractor {
                         waitForDomQuiet(page, 1800, 300)
                     ]);
 
-                    const addedPaths = await addedPathsPromise;
-
-                    const actions: Action[] = await page.evaluate(() => {
+                    const actions: Action[] = await page.evaluate((clickX: number, clickY: number) => {
                         function visible(el: Element): boolean {
                             const st = window.getComputedStyle(el as HTMLElement);
                             const r = (el as HTMLElement).getBoundingClientRect();
@@ -329,18 +344,36 @@ export class Extractor {
                             const text = (el as HTMLElement).innerText || (el.textContent || '');
                             return (text || '').trim().replace(/\s+/g, ' ').slice(0, 120);
                         }
+                        function excludeGlobal(el: Element | null): boolean {
+                            if (!el) return false;
+                            const tag = el.tagName.toLowerCase();
+                            if (tag === 'header' || tag === 'nav' || tag === 'aside') return true;
+                            const st = window.getComputedStyle(el as HTMLElement);
+                            const r = (el as HTMLElement).getBoundingClientRect();
+                            if ((st.position === 'fixed' || st.position === 'sticky') && r.top <= 0 && r.height < 140) return true;
+                            return false;
+                        }
+                        function pickContainerFromPoint(x: number, y: number): Element | null {
+                            let el: Element | null = document.elementFromPoint(x, y);
+                            while (el && !visible(el)) el = el.parentElement;
+                            while (el && excludeGlobal(el)) el = el.parentElement;
+                            return el;
+                        }
                         function pickContainer(): Element | null {
                             // Prefer explicit dialog markers
                             const dialogCandidates = Array.from(document.querySelectorAll('[role="dialog"], dialog, [aria-modal="true"]')) as Element[];
                             const visibles = dialogCandidates.filter(visible);
                             if (visibles.length) return visibles[visibles.length - 1];
-                            // Fallback: highest z-index fixed/absolute large box
+                            // From click position
+                            const p = pickContainerFromPoint(clickX, clickY);
+                            if (p) return p;
+                            // Fallback: highest z-index fixed/absolute
                             const candidates = Array.from(document.querySelectorAll('*')) as Element[];
                             let best: { el: Element; score: number } | null = null;
                             for (const el of candidates) {
                                 const st = window.getComputedStyle(el as HTMLElement);
                                 if (!(st.position === 'fixed' || st.position === 'absolute')) continue;
-                                if (!visible(el)) continue;
+                                if (!visible(el) || excludeGlobal(el)) continue;
                                 const r = (el as HTMLElement).getBoundingClientRect();
                                 const z = parseInt(st.zIndex || '0', 10) || 0;
                                 const area = r.width * r.height;
@@ -371,7 +404,6 @@ export class Extractor {
                             }
                             if (out.length >= 20) break;
                         }
-                        // Close control inside container
                         const close = container.querySelector('[aria-label*="close" i], .close, .modal-close');
                         if (close && visible(close)) {
                             const cl = labelOf(close) || 'Close';
@@ -380,7 +412,7 @@ export class Extractor {
                         const uniq: any[] = []; const sig = new Set<string>();
                         for (const a of out) { const k = `${a.type}|${a.label}`; if (!sig.has(k)) { sig.add(k); uniq.push(a); } }
                         return uniq;
-                    });
+                    }, cx, cy);
 
                     return actions;
                 } catch { return []; }
@@ -388,14 +420,12 @@ export class Extractor {
 
             let actions = await tryOnce();
             if (actions.length === 0) {
-                // Retry with longer quiet window
-                await waitForDomQuiet(page, 600, 300);
+                await waitForDomQuiet(page, 800, 350);
                 actions = await tryOnce();
             }
 
             transitions.push({ triggerLabel: t.label, triggerSelector: t.selector, actions });
 
-            // Reset state
             await page.keyboard.press('Escape').catch(() => { });
             await waitForDomQuiet(page, 600, 250);
         }
