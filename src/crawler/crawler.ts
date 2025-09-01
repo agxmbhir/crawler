@@ -13,6 +13,7 @@ export type CrawlOptions = {
     discoverTransitions?: boolean;
     transitionsPerPage?: number;
     screenshotDir?: string;
+    jsonlDir?: string;
 };
 
 export type PageVisit = {
@@ -63,7 +64,7 @@ function resolveHref(baseUrl: string, href?: string): string | null {
 function safeFileName(url: string): string {
     try {
         const u = new URL(url);
-        return (u.hostname + u.pathname).replace(/[^a-z0-9\-]+/gi, "_").slice(0, 200) + ".png";
+        return (u.hostname + u.pathname + u.search).replace(/[^a-z0-9\-]+/gi, "_").slice(0, 200) + ".png";
     } catch {
         return url.replace(/[^a-z0-9\-]+/gi, "_").slice(0, 200) + ".png";
     }
@@ -78,17 +79,17 @@ export class Crawler {
         this.extractor = extractor;
     }
 
-    private async visit(url: string, discoverTransitions: boolean, transitionsPerPage: number, screenshotDir?: string): Promise<{ normalized: string; title: string; actions: Action[]; transitions: Array<{ triggerLabel: string; actions: Action[] }>; screenshotPath?: string }> {
+    private async visit(url: string, discoverTransitions: boolean, transitionsPerPage: number, screenshotDir?: string): Promise<{ normalized: string; title: string; actions: Action[]; transitions: Array<{ triggerLabel: string; actions: Action[]; added?: string[]; removed?: string[] }>; screenshotPath?: string }> {
         const shotPath = screenshotDir ? path.join(screenshotDir, safeFileName(url)) : undefined;
         const { actions, currentUrl, title, transitions } = await this.renderer.renderAndRun(url, async (page: any) => {
             const items = await this.extractor.extract(page);
             const href = await page.url();
             const t = await page.title().catch(() => "");
-            let trans: Array<{ triggerLabel: string; actions: Action[] }> = [];
+            let trans: Array<{ triggerLabel: string; actions: Action[]; added?: string[]; removed?: string[] }> = [];
             if (discoverTransitions) {
                 try {
                     const discovered = await this.extractor.discoverTransitions(page, transitionsPerPage);
-                    trans = (discovered || []).map((d: any) => ({ triggerLabel: d.triggerLabel, actions: d.actions || [] }));
+                    trans = (discovered || []).map((d: any) => ({ triggerLabel: d.triggerLabel, actions: d.actions || [], added: d.added || [], removed: d.removed || [] }));
                 } catch { }
             }
             return { actions: items, currentUrl: href as string, title: t as string, transitions: trans };
@@ -105,7 +106,9 @@ export class Crawler {
         const discoverTransitions = options.discoverTransitions ?? true;
         const transitionsPerPage = Math.max(0, Math.min(options.transitionsPerPage ?? 12, 50));
         const screenshotDir = options.screenshotDir ?? path.join(process.cwd(), "out", "screens");
+        const jsonlDir = options.jsonlDir ?? path.join(process.cwd(), "out", "jsonl");
         try { fs.mkdirSync(screenshotDir, { recursive: true }); } catch { }
+        try { fs.mkdirSync(jsonlDir, { recursive: true }); } catch { }
 
         const visited = new Set<string>();
         const pages: PageVisit[] = [];
@@ -166,20 +169,38 @@ export class Crawler {
                         }
                     }
 
+                    // Create explicit transition nodes and edges (page and transition nodes; option nodes are treated as transition-type)
                     for (const tr of (res as any).transitions || []) {
                         const trigger = tr.triggerLabel;
-                        const opts = Array.from(new Set(((tr.actions || []) as Action[]).map(a => a.label).filter(Boolean)));
-                        if (trigger && opts.length) {
-                            actionEdges.push({ to: normalized, label: trigger, type: "transition", options: opts.slice(0, 12) });
+                        if (!trigger) continue;
+                        const transitionNode = `${normalized}::TRANS::${trigger}`;
+                        // Edge from page to transition node
+                        actionEdges.push({ to: transitionNode, label: trigger, type: "transition" });
+
+                        // Options: prefer added; if none, fall back to removed (toggle case)
+                        const combined = [...new Set([...(tr.added || []), ...(tr.added && tr.added.length ? [] : (tr.removed || []))])];
+                        if (!actionGraph[transitionNode]) actionGraph[transitionNode] = [];
+                        for (const opt of combined) {
+                            if (!opt) continue;
+                            const optNode = `${transitionNode}::OPT::${opt}`;
+                            // transition node -> option node (click semantics)
+                            actionGraph[transitionNode].push({ to: optNode, label: opt, type: "click" });
+                            // Option node -> destination (if navigation label matches), else back to page
+                            const navMatch = actionEdges.find(e => e.type === "navigate" && e.label && e.label.toLowerCase() === opt.toLowerCase());
+                            if (!actionGraph[optNode]) actionGraph[optNode] = [];
+                            if (navMatch) {
+                                actionGraph[optNode].push({ to: navMatch.to, label: navMatch.label || opt, type: "navigate" });
+                            } else {
+                                actionGraph[optNode].push({ to: normalized, label: opt, type: "click" });
+                            }
                         }
                     }
-                    // Suppress simple click edges if a transition edge exists for the same trigger label
 
                     const transitionLabels = new Set<string>(actionEdges.filter(e => e.type === 'transition').map(e => e.label));
-                    const filteredEdges = actionEdges.filter(e => !(e.type !== 'navigate' && e.options == null && transitionLabels.has(e.label)));
+                    const filteredEdges = actionEdges.filter(e => !(e.type !== 'navigate' && e.type !== 'transition' && transitionLabels.has(e.label)));
 
                     graph[normalized] = nextUrls;
-                    actionGraph[normalized] = filteredEdges;
+                    actionGraph[normalized] = (actionGraph[normalized] || []).concat(filteredEdges);
                     pages.push({ url: normalized, title: res.title, depth: input.depth, actions: res.actions, screenshotPath: res.screenshotPath });
 
                     const childDepth = input.depth + 1;
@@ -206,6 +227,31 @@ export class Crawler {
             }
         }
 
+        // JSONL export
+        try {
+            const pagesPath = path.join(jsonlDir, 'pages.jsonl');
+            const edgesPath = path.join(jsonlDir, 'edges.jsonl');
+            const pws = fs.createWriteStream(pagesPath);
+            const ews = fs.createWriteStream(edgesPath);
+            for (const p of pages) {
+                const rec = { url: p.url, title: p.title, depth: p.depth, screenshotPath: p.screenshotPath };
+                pws.write(JSON.stringify(rec) + "\n");
+            }
+            for (const [src, edges] of Object.entries(actionGraph)) {
+                for (const e of edges) {
+                    if (e.type === 'navigate') {
+                        ews.write(JSON.stringify({ type: 'nav', fromUrl: src, toUrl: e.to, label: e.label }) + "\n");
+                    } else if (e.type === 'transition') {
+                        // transition edge from page to transition node
+                        ews.write(JSON.stringify({ type: 'transition', fromUrl: src, toUrl: e.to, trigger: e.label, options: e.options || [] }) + "\n");
+                    } else {
+                        ews.write(JSON.stringify({ type: 'click', fromUrl: src, toUrl: e.to, label: e.label }) + "\n");
+                    }
+                }
+            }
+            pws.end(); ews.end();
+        } catch { }
+
         return { pages, graph, actionGraph };
     }
 }
@@ -220,12 +266,19 @@ export function toDot(result: CrawlResult): string {
             const pathq = `${u.pathname}${u.search}` || "/";
             return pathq.length > 120 ? pathq.slice(0, 117) + "…" : pathq;
         } catch {
+            const tIx = url.indexOf('::TRANS::');
+            const oIx = url.indexOf('::OPT::');
+            if (tIx >= 0 && oIx === -1) {
+                const trigger = url.slice(tIx + '::TRANS::'.length);
+                return `▶ ${trigger}`;
+            }
+            if (oIx >= 0) {
+                const opt = url.slice(oIx + '::OPT::'.length);
+                return `• ${opt}`;
+            }
             return url.length > 120 ? url.slice(0, 117) + "…" : url;
         }
     }
-
-    const MAX_SELF_EDGES_PER_PAGE = 100;
-
     const lines: string[] = [];
     lines.push("digraph G {");
     lines.push("  rankdir=LR;");
@@ -235,49 +288,56 @@ export function toDot(result: CrawlResult): string {
     for (const outs of Object.values(result.graph)) {
         for (const v of outs) nodes.add(v);
     }
+    // Also include synthetic transition nodes from actionGraph
+    for (const [src, edges] of Object.entries(result.actionGraph)) {
+        nodes.add(src);
+        for (const e of edges) nodes.add(e.to);
+    }
 
-    // Page nodes
+    // Declare page, transition, and option nodes
     for (const n of nodes) {
         const label = esc(labelFor(n));
         const tooltip = esc(n);
-        lines.push(`  "${esc(n)}" [label="${label}", tooltip="${tooltip}"];`);
+        const isTrans = n.includes('::TRANS::');
+        const isOpt = n.includes('::OPT::');
+        const style = isOpt ? 'dashed,rounded' : (isTrans ? 'dashed,rounded' : 'rounded');
+        const color = isOpt ? 'gray50' : (isTrans ? 'dodgerblue' : 'black');
+        const extra = isOpt ? ', fillcolor="whitesmoke"' : '';
+        lines.push(`  "${esc(n)}" [label="${label}", tooltip="${tooltip}", color="${color}", style="${style}"${extra}];`);
     }
 
-    // Navigation edges (solid)
+    // Navigation edges (solid) with labels
     for (const [src, outs] of Object.entries(result.graph)) {
         const seen = new Set<string>();
         for (const dst of outs) {
             if (seen.has(dst)) continue; seen.add(dst);
             const acts = (result.actionGraph[src] || []).filter(e => e.type === "navigate" && e.to === dst);
             const lbl = esc((acts[0]?.label) || "");
-            if (lbl) lines.push(`  "${esc(src)}" -> "${esc(dst)}" [label="${lbl}"];`);
-            else lines.push(`  "${esc(src)}" -> "${esc(dst)}";`);
+            if (lbl) {
+                lines.push(`  "${esc(src)}" -> "${esc(dst)}" [label="${lbl}"];`);
+            } else {
+                lines.push(`  "${esc(src)}" -> "${esc(dst)}";`);
+            }
         }
     }
 
-    // Self edges summarizing page-local actions/transitions
+    // Action edges: page → transition (dotted), transition → option (dashed), option → page (dashed) or option → destination (solid)
     for (const [src, edges] of Object.entries(result.actionGraph)) {
-        const used = new Set<string>();
-        let count = 0;
-        // Prefer transitions and click-with-options
-        const sorted = [...edges].sort((a, b) => {
-            const rank = (e: Edge) => (e.type === "transition" ? 0 : (e.options && e.options.length ? 1 : 2));
-            return rank(a) - rank(b);
-        });
-        for (const e of sorted) {
-            if (e.type === "navigate") continue; // handled above
-            if (count >= MAX_SELF_EDGES_PER_PAGE) break;
-            if (e.type === "transition" || (e.options && e.options.length)) {
-                const opts = (e.options || []).slice(0, 8).map(o => esc(o)).join(" | ");
-                const lbl = `${esc(e.label)} -> (${opts})`;
-                if (used.has(lbl)) continue; used.add(lbl);
-                lines.push(`  "${esc(src)}" -> "${esc(src)}" [style=dotted, color=dodgerblue, label="${lbl}"];`);
-                count++;
+        for (const e of edges) {
+            if (e.type === 'navigate') {
+                const isTransSrc = src.includes('::TRANS::') || src.includes('::OPT::');
+                if (isTransSrc) {
+                    lines.push(`  "${esc(src)}" -> "${esc(e.to)}" [label="${esc(e.label)}"];`);
+                }
+                continue;
+            }
+            if (e.type === 'transition') {
+                lines.push(`  "${esc(src)}" -> "${esc(e.to)}" [style=dotted, color=dodgerblue, label="${esc(e.label)}"];`);
             } else {
-                const lbl = esc(e.label);
-                if (used.has(lbl)) continue; used.add(lbl);
-                lines.push(`  "${esc(src)}" -> "${esc(src)}" [style=dashed, color=gray50, label="${lbl}"];`);
-                count++;
+                const isTransSrc = src.includes('::TRANS::') || src.includes('::OPT::');
+                const style = isTransSrc ? 'dashed' : 'dashed';
+                const color = isTransSrc ? 'gray50' : 'gray50';
+                lines.push(`  "${esc(src)}" -> "${esc(e.to)}" [style=${style}, color=${color}, label="${esc(e.label)}"];`);
             }
         }
     }

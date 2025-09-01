@@ -7,9 +7,9 @@ import * as path from "path";
 async function sleep(ms: number): Promise<void> { return new Promise((r) => setTimeout(r, ms)); }
 
 async function main(): Promise<void> {
-    const manualLoginUrl = process.env.MANUAL_LOGIN_URL; // optional
-    const loginWaitMs = Number(process.env.LOGIN_WAIT_MS || 120000); // default 3 minutes
-    const seedUrl = process.env.SEED_URL || "https://ant.design/components/modal";
+    const manualLoginUrl = "https://app.pointer.ai"; // optional
+    const loginWaitMs = Number(120000); // default 2 minutes
+    const seedUrl = "https://app.pointer.ai/analytics";
 
     const renderer = new Renderer({ headless: manualLoginUrl ? false : true, userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36" });
     try {
@@ -28,8 +28,8 @@ async function main(): Promise<void> {
         const crawler = new Crawler(renderer, extractor);
         const { pages, graph, actionGraph } = await crawler.crawl({
             seeds: [seedUrl],
-            maxDepth: 1,
-            maxPages: 10,
+            maxDepth: 3,
+            maxPages: 40,
             sameOrigin: true,
             delayMs: 0,
             concurrency: 4,

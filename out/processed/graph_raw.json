@@ -1,0 +1,2283 @@
+{
+  "inDir": "/Users/agam/crawler/out/jsonl",
+  "pages": [
+    {
+      "urlCanon": "https://app.pointer.ai/analytics",
+      "title": "Analytics – Pointer",
+      "depth": 0,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_analytics.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/settings?tab=account",
+      "title": "Settings – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_settings_tab_account.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/settings?tab=general",
+      "title": "Settings – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_settings_tab_general.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/settings?tab=setup",
+      "title": "Settings – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_settings_tab_setup.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/settings?tab=keys",
+      "title": "Settings – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_settings_tab_keys.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/settings?tab=team",
+      "title": "Settings – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_settings_tab_team.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/analytics?tab=overview",
+      "title": "Analytics – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_analytics_tab_overview.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/analytics?tab=conversations",
+      "title": "Analytics – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_analytics_tab_conversations.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/analytics?tab=replays",
+      "title": "Analytics – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_analytics_tab_replays.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/analytics?tab=logs",
+      "title": "Analytics – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_analytics_tab_logs.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/knowledge",
+      "title": "Knowledge – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_knowledge.png"
+    },
+    {
+      "urlCanon": "https://app.pointer.ai/playground",
+      "title": "Playground – Pointer",
+      "depth": 1,
+      "screenshotPath": "/Users/agam/crawler/out/screens/app_pointer_ai_playground.png"
+    }
+  ],
+  "edgesByFrom": [
+    {
+      "fromCanon": "https://app.pointer.ai/analytics",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics",
+          "label": "Last 7 days"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics",
+          "trigger": "Last 7 days",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=account",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Choose file"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Go to Slack"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Delete account"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "trigger": "Analytics",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=general",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Choose file"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Delete project"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Project name"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Project description"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "trigger": "Analytics",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=setup",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Check connection"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Back to dashboard"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "trigger": "Analytics",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "trigger": "Check connection",
+          "options": [
+            "Checking connection"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=team",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Send invite"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "trigger": "Analytics",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "trigger": "Owner",
+          "options": [
+            "Owner"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=overview",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Last 7 days"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "trigger": "Last 7 days",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=conversations",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "10 per page"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "trigger": "10 per page",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=replays",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "10 per page"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "trigger": "10 per page",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=logs",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "20 per page"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "trigger": "20 per page",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/knowledge",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Add rule"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Add file"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Add link"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Clear cache"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/playground",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Analytics"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Display"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Widget Classic view"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Command menu Modern view"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Add section"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Drag to reorder"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Welcome"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Triggers"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Design"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Behavior"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Home"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Chat"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Switch to light preview"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Navigation Analytics Knowledge Playground Settings"
+        },
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Home Chat"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "trigger": "Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "trigger": "Navigation Analytics Knowledge Playground Settings",
+          "options": [
+            "My account",
+            "General",
+            "Setup",
+            "Keys",
+            "Team",
+            "Overview",
+            "Conversations",
+            "Sessions",
+            "Logs",
+            "Knowledge",
+            "Playground",
+            "Settings"
+          ]
+        }
+      ]
+    }
+  ],
+  "navByDest": [
+    {
+      "toCanon": "https://app.pointer.ai/settings?tab=account",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "Settings"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/settings?tab=general",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/settings?tab=setup",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/settings?tab=keys",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/settings?tab=team",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/analytics?tab=overview",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/analytics?tab=conversations",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/analytics?tab=replays",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/analytics?tab=logs",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/knowledge",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        }
+      ]
+    },
+    {
+      "toCanon": "https://app.pointer.ai/playground",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=team",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        }
+      ]
+    }
+  ]
+}

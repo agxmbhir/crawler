@@ -6,13 +6,16 @@
     "scripts": {
         "build": "tsc",
         "start": "node dist/index.js",
-        "dev": "ts-node src/index.ts"
+        "dev": "ts-node src/index.ts",
+        "process": "ts-node src/process.ts"
     },
     "devDependencies": {
         "ts-node": "^10.9.2",
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "puppeteer": "^24.17.1"
+        "puppeteer": "^24.17.1",
+        "dotenv": "^16.4.5",
+        "@anthropic-ai/sdk": "^0.29.1"
     }
 }

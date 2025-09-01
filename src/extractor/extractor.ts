@@ -16,6 +16,8 @@ export type Transition = {
     triggerLabel: string;
     triggerSelector: string;
     actions: Action[];
+    added?: string[];
+    removed?: string[];
 };
 
 export class Extractor {
@@ -237,7 +239,7 @@ export class Extractor {
     }
 
     async discoverTransitions(page: any, maxTriggers: number = 12): Promise<Transition[]> {
-        // 1) Pick triggers from current DOM
+        // Pick triggers from current DOM (kept simple)
         const triggers: { label: string; selector: string }[] = await page.evaluate((limit: number) => {
             function isVisible(el: Element): boolean {
                 const st = window.getComputedStyle(el as HTMLElement);
@@ -258,7 +260,7 @@ export class Extractor {
                 return `${tag}${cs}`;
             }
             const out: { label: string; selector: string }[] = [];
-            const nodes = Array.from(document.querySelectorAll('button, [role="button"], label[for], [tabindex]'));
+            const nodes = Array.from(document.querySelectorAll('button, [role="button"], label[for], [tabindex], [role="tab"], [aria-haspopup="true"]'));
             for (const el of nodes) {
                 if (!isVisible(el)) continue;
                 const label = labelOf(el); if (!label) continue;
@@ -278,28 +280,100 @@ export class Extractor {
             }), timeoutMs, quietMs).catch(() => { });
         }
 
-        // Track added nodes after a click using a short-lived MutationObserver in the page context
-        async function trackAddedNodes(page: any, windowMs: number = 1200): Promise<string[]> {
-            const paths: string[] = await page.evaluate((winMs: number) => new Promise<string[]>((resolve) => {
-                const added: Element[] = [];
-                const obs = new MutationObserver((recs) => {
-                    for (const rec of recs) {
-                        rec.addedNodes.forEach((n) => { if (n instanceof Element) added.push(n as Element); });
+        // Helper: collect labels inside a container scoped to the trigger
+        async function collectScopedLabels(elHandle: any, mode: 'pre' | 'post'): Promise<string[]> {
+            return await page.evaluate((el: Element, modeArg: string) => {
+                function visible(el: Element): boolean {
+                    const st = window.getComputedStyle(el as HTMLElement);
+                    const r = (el as HTMLElement).getBoundingClientRect();
+                    return st.display !== 'none' && st.visibility !== 'hidden' && st.opacity !== '0' && r.width > 0 && r.height > 0;
+                }
+                function labelOf(el: Element): string {
+                    const aria = (el.getAttribute('aria-label') || '').trim(); if (aria) return aria;
+                    const title = (el.getAttribute('title') || '').trim(); if (title) return title;
+                    const txt = (el as HTMLElement).innerText || (el.textContent || '');
+                    return (txt || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+                }
+                function excludeGlobal(el: Element | null): boolean {
+                    if (!el) return false;
+                    const tag = el.tagName.toLowerCase();
+                    if (tag === 'header' || tag === 'nav' || tag === 'aside') return true;
+                    const st = window.getComputedStyle(el as HTMLElement);
+                    const r = (el as HTMLElement).getBoundingClientRect();
+                    if ((st.position === 'fixed' || st.position === 'sticky') && r.top <= 0 && r.height < 140) return true;
+                    return false;
+                }
+                function nearestMenuContainer(start: Element | null): Element | null {
+                    let cur: Element | null = start;
+                    while (cur) {
+                        const cand = (cur.closest('[role="menu"], [role="listbox"], [data-sidebar="menu"], [data-sidebar="group"], ul, nav, aside') as Element) || null;
+                        if (cand && visible(cand)) return cand;
+                        cur = cur.parentElement;
                     }
-                });
-                obs.observe(document.documentElement, { subtree: true, childList: true });
-                setTimeout(() => {
-                    obs.disconnect();
-                    function nodePath(el: Element): string {
-                        const id = el.getAttribute('id');
-                        const cls = (el.getAttribute('class') || '').split(/\s+/).filter(Boolean).slice(0, 2).join('.');
-                        return `${el.tagName.toLowerCase()}${id ? `#${id}` : ''}${cls ? `.` + cls : ''}`;
+                    return null;
+                }
+                function baselineContainerFor(trigger: Element): Element {
+                    const id = trigger.getAttribute('aria-controls');
+                    if (id) {
+                        const target = document.getElementById(id);
+                        if (target && visible(target)) return target as Element;
                     }
-                    const out = Array.from(new Set(added.map(nodePath)));
-                    resolve(out);
-                }, winMs);
-            }), windowMs).catch(() => []);
-            return paths;
+                    if ((trigger.getAttribute('role') || '').toLowerCase() === 'tab') {
+                        const tid = trigger.getAttribute('id');
+                        if (tid) {
+                            const panel = document.querySelector(`[role="tabpanel"][aria-labelledby="${CSS.escape(tid)}"]`);
+                            if (panel && visible(panel as Element)) return panel as Element;
+                        }
+                    }
+                    const menu = nearestMenuContainer(trigger);
+                    if (menu) return menu;
+                    let up: Element = trigger;
+                    for (let i = 0; i < 3 && up.parentElement; i++) up = up.parentElement as Element;
+                    return up;
+                }
+                function postContainerFor(trigger: Element, baseline: Element): Element {
+                    const dialogs = Array.from(document.querySelectorAll('[role="dialog"], dialog, [aria-modal="true"')) as Element[];
+                    const vis = dialogs.filter(visible);
+                    if (vis.length) return vis[vis.length - 1];
+                    const id = trigger.getAttribute('aria-controls');
+                    if (id) {
+                        const target = document.getElementById(id);
+                        if (target && visible(target)) return target as Element;
+                    }
+                    if ((trigger.getAttribute('role') || '').toLowerCase() === 'tab') {
+                        const tid = trigger.getAttribute('id');
+                        if (tid) {
+                            const panel = document.querySelector(`[role="tabpanel"][aria-labelledby="${CSS.escape(tid)}"]`);
+                            if (panel && visible(panel as Element)) return panel as Element;
+                        }
+                    }
+                    const expanded = trigger.closest('[aria-expanded="true"]') || trigger;
+                    const menu = nearestMenuContainer(expanded as Element);
+                    if (menu) return menu;
+                    return baseline;
+                }
+                function collect(root: Element): string[] {
+                    const labels: string[] = [];
+                    const sels = ['a[href]', 'button', '[role="button"]', '[role="menuitem"]', '[role="tab"]', 'input[type="submit"]', 'input[type="button"]'];
+                    for (const q of sels) {
+                        for (const el of Array.from(root.querySelectorAll(q))) {
+                            if (!visible(el) || excludeGlobal(el)) continue;
+                            const l = labelOf(el); if (!l) continue;
+                            labels.push(l);
+                            if (labels.length >= 40) break;
+                        }
+                        if (labels.length >= 40) break;
+                    }
+                    return Array.from(new Set(labels));
+                }
+                try {
+                    const trigger = el;
+                    const base = baselineContainerFor(trigger);
+                    const mode = modeArg === 'pre' ? 'pre' : 'post';
+                    const container = mode === 'pre' ? base : postContainerFor(trigger, base);
+                    return collect(container);
+                } catch { return []; }
+            }, elHandle, mode as any).catch(() => []);
         }
 
         const transitions: Transition[] = [];
@@ -307,127 +381,28 @@ export class Extractor {
             const handle = await page.$(t.selector);
             if (!handle) continue;
 
-            const tryOnce = async (): Promise<Action[]> => {
-                try {
-                    // Click coordinates (center of element)
-                    let cx = 0, cy = 0;
-                    try { const b = await handle.boundingBox(); if (b) { cx = b.x + b.width / 2; cy = b.y + b.height / 2; } } catch { }
+            const preLabels = await collectScopedLabels(handle, 'pre');
 
-                    const beforeFocus: string = await page.evaluate(() => {
-                        const ae = document.activeElement as HTMLElement | null;
-                        return ae ? (ae.innerText || ae.getAttribute('aria-label') || ae.tagName).slice(0, 120) : '';
-                    });
+            try { await handle.hover({}); } catch { }
+            try { await handle.click({ delay: 10 }); } catch { }
 
-                    await handle.hover().catch(() => { });
-                    await handle.click({ delay: 10 }).catch(() => { });
+            await Promise.race([
+                page.waitForFunction(() => !!document.querySelector('[role="dialog"], dialog, [aria-modal="true"], [data-state="open"], [aria-expanded="true"]'), { timeout: 1500 }).catch(() => { }),
+                waitForDomQuiet(page, 1500, 250)
+            ]);
 
-                    await Promise.race([
-                        page.waitForFunction((bf: string) => {
-                            const ae = document.activeElement as HTMLElement | null;
-                            const now = ae ? (ae.innerText || ae.getAttribute('aria-label') || ae.tagName).slice(0, 120) : '';
-                            return now !== bf;
-                        }, { timeout: 1800 }, beforeFocus).catch(() => { }),
-                        page.waitForFunction(() => !!document.querySelector('[role="dialog"], dialog, [aria-modal="true"], [data-state="open"], [aria-expanded="true"]'), { timeout: 1800 }).catch(() => { }),
-                        waitForDomQuiet(page, 1800, 300)
-                    ]);
+            const postLabels = await collectScopedLabels(handle, 'post');
 
-                    const actions: Action[] = await page.evaluate((clickX: number, clickY: number) => {
-                        function visible(el: Element): boolean {
-                            const st = window.getComputedStyle(el as HTMLElement);
-                            const r = (el as HTMLElement).getBoundingClientRect();
-                            const rects = (el as HTMLElement).getClientRects();
-                            return st.display !== 'none' && st.visibility !== 'hidden' && st.opacity !== '0' && r.width > 0 && r.height > 0 && rects.length > 0;
-                        }
-                        function labelOf(el: Element): string {
-                            const aria = (el.getAttribute('aria-label') || '').trim(); if (aria) return aria;
-                            const title = (el.getAttribute('title') || '').trim(); if (title) return title;
-                            const text = (el as HTMLElement).innerText || (el.textContent || '');
-                            return (text || '').trim().replace(/\s+/g, ' ').slice(0, 120);
-                        }
-                        function excludeGlobal(el: Element | null): boolean {
-                            if (!el) return false;
-                            const tag = el.tagName.toLowerCase();
-                            if (tag === 'header' || tag === 'nav' || tag === 'aside') return true;
-                            const st = window.getComputedStyle(el as HTMLElement);
-                            const r = (el as HTMLElement).getBoundingClientRect();
-                            if ((st.position === 'fixed' || st.position === 'sticky') && r.top <= 0 && r.height < 140) return true;
-                            return false;
-                        }
-                        function pickContainerFromPoint(x: number, y: number): Element | null {
-                            let el: Element | null = document.elementFromPoint(x, y);
-                            while (el && !visible(el)) el = el.parentElement;
-                            while (el && excludeGlobal(el)) el = el.parentElement;
-                            return el;
-                        }
-                        function pickContainer(): Element | null {
-                            // Prefer explicit dialog markers
-                            const dialogCandidates = Array.from(document.querySelectorAll('[role="dialog"], dialog, [aria-modal="true"]')) as Element[];
-                            const visibles = dialogCandidates.filter(visible);
-                            if (visibles.length) return visibles[visibles.length - 1];
-                            // From click position
-                            const p = pickContainerFromPoint(clickX, clickY);
-                            if (p) return p;
-                            // Fallback: highest z-index fixed/absolute
-                            const candidates = Array.from(document.querySelectorAll('*')) as Element[];
-                            let best: { el: Element; score: number } | null = null;
-                            for (const el of candidates) {
-                                const st = window.getComputedStyle(el as HTMLElement);
-                                if (!(st.position === 'fixed' || st.position === 'absolute')) continue;
-                                if (!visible(el) || excludeGlobal(el)) continue;
-                                const r = (el as HTMLElement).getBoundingClientRect();
-                                const z = parseInt(st.zIndex || '0', 10) || 0;
-                                const area = r.width * r.height;
-                                const score = z * 10 + area;
-                                if (!best || score > best.score) best = { el, score };
-                            }
-                            return best?.el || null;
-                        }
-                        function pickActionRegion(container: Element): Element {
-                            const qs = ['footer', '[class*="footer" i]', '[class*="actions" i]', '[data-actions]'];
-                            for (const q of qs) {
-                                const el = container.querySelector(q);
-                                if (el && visible(el)) return el as Element;
-                            }
-                            return container;
-                        }
-                        const container = pickContainer() || document.body;
-                        const region = pickActionRegion(container);
-                        const out: any[] = [];
-                        const controlSelectors = ["a[href]", "button", "[role='button']", "input[type='submit']", "input[type='button']"];
-                        for (const q of controlSelectors) {
-                            for (const el of Array.from(region.querySelectorAll(q))) {
-                                if (!visible(el)) continue;
-                                const lbl = labelOf(el);
-                                if (!lbl) continue;
-                                out.push({ type: 'click', label: lbl, selector: '' });
-                                if (out.length >= 20) break;
-                            }
-                            if (out.length >= 20) break;
-                        }
-                        const close = container.querySelector('[aria-label*="close" i], .close, .modal-close');
-                        if (close && visible(close)) {
-                            const cl = labelOf(close) || 'Close';
-                            out.push({ type: 'click', label: cl, selector: '' });
-                        }
-                        const uniq: any[] = []; const sig = new Set<string>();
-                        for (const a of out) { const k = `${a.type}|${a.label}`; if (!sig.has(k)) { sig.add(k); uniq.push(a); } }
-                        return uniq;
-                    }, cx, cy);
+            const preSet = new Set(preLabels);
+            const postSet = new Set(postLabels);
+            const added = postLabels.filter(l => !preSet.has(l));
+            const removed = preLabels.filter(l => !postSet.has(l));
 
-                    return actions;
-                } catch { return []; }
-            };
-
-            let actions = await tryOnce();
-            if (actions.length === 0) {
-                await waitForDomQuiet(page, 800, 350);
-                actions = await tryOnce();
-            }
-
-            transitions.push({ triggerLabel: t.label, triggerSelector: t.selector, actions });
+            const actions: Action[] = postLabels.map(l => ({ type: 'click', label: l, selector: '' }));
+            transitions.push({ triggerLabel: t.label, triggerSelector: t.selector, actions, added, removed });
 
             await page.keyboard.press('Escape').catch(() => { });
-            await waitForDomQuiet(page, 600, 250);
+            await waitForDomQuiet(page, 600, 200);
         }
         return transitions;
     }
