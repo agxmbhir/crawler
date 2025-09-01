@@ -12,8 +12,9 @@ export type EdgeRec = {
     fromUrl: string;
     toUrl: string; // self for non-nav
     label?: string; // for nav/click
-    trigger?: string; // for transition
-    options?: string[]; // for transition
+    trigger?: string; // for transition or derived from node
+    option?: string; // for option node derived edges
+    options?: string[]; // deprecated, kept for backward compatibility
 };
 
 export type CanonPage = {

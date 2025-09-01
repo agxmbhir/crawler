@@ -31,7 +31,6 @@ digraph G {
   "https://app.pointer.ai/settings?tab=setup::TRANS::Back to dashboard" [label="/settings?tab=setup::TRANS::Back%20to%20dashboard", tooltip="https://app.pointer.ai/settings?tab=setup::TRANS::Back to dashboard", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/settings?tab=keys::TRANS::Analytics" [label="/settings?tab=keys::TRANS::Analytics", tooltip="https://app.pointer.ai/settings?tab=keys::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/settings?tab=keys::TRANS::Create key" [label="/settings?tab=keys::TRANS::Create%20key", tooltip="https://app.pointer.ai/settings?tab=keys::TRANS::Create key", color="dodgerblue", style="dashed,rounded"];
-  "https://app.pointer.ai/settings?tab=keys::TRANS::Create key::OPT::Cancel" [label="/settings?tab=keys::TRANS::Create%20key::OPT::Cancel", tooltip="https://app.pointer.ai/settings?tab=keys::TRANS::Create key::OPT::Cancel", color="gray50", style="dashed,rounded", fillcolor="whitesmoke"];
   "https://app.pointer.ai/settings?tab=team::TRANS::Analytics" [label="/settings?tab=team::TRANS::Analytics", tooltip="https://app.pointer.ai/settings?tab=team::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/settings?tab=team::TRANS::Send invite" [label="/settings?tab=team::TRANS::Send%20invite", tooltip="https://app.pointer.ai/settings?tab=team::TRANS::Send invite", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/settings?tab=team::TRANS::Owner" [label="/settings?tab=team::TRANS::Owner", tooltip="https://app.pointer.ai/settings?tab=team::TRANS::Owner", color="dodgerblue", style="dashed,rounded"];
@@ -40,15 +39,14 @@ digraph G {
   "https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days" [label="/analytics?tab=overview::TRANS::Last%207%20days::OPT::Last%207%20days", tooltip="https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days", color="gray50", style="dashed,rounded", fillcolor="whitesmoke"];
   "https://app.pointer.ai/analytics?tab=conversations::TRANS::Analytics" [label="/analytics?tab=conversations::TRANS::Analytics", tooltip="https://app.pointer.ai/analytics?tab=conversations::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page" [label="/analytics?tab=conversations::TRANS::10%20per%20page", tooltip="https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page", color="dodgerblue", style="dashed,rounded"];
+  "https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page::OPT::10 per page" [label="/analytics?tab=conversations::TRANS::10%20per%20page::OPT::10%20per%20page", tooltip="https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page::OPT::10 per page", color="gray50", style="dashed,rounded", fillcolor="whitesmoke"];
   "https://app.pointer.ai/analytics?tab=replays::TRANS::Analytics" [label="/analytics?tab=replays::TRANS::Analytics", tooltip="https://app.pointer.ai/analytics?tab=replays::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page" [label="/analytics?tab=replays::TRANS::10%20per%20page", tooltip="https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page", color="dodgerblue", style="dashed,rounded"];
-  "https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page::OPT::10 per page" [label="/analytics?tab=replays::TRANS::10%20per%20page::OPT::10%20per%20page", tooltip="https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page::OPT::10 per page", color="gray50", style="dashed,rounded", fillcolor="whitesmoke"];
   "https://app.pointer.ai/analytics?tab=logs::TRANS::Analytics" [label="/analytics?tab=logs::TRANS::Analytics", tooltip="https://app.pointer.ai/analytics?tab=logs::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page" [label="/analytics?tab=logs::TRANS::20%20per%20page", tooltip="https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page" [label="/analytics?tab=logs::TRANS::20%20per%20page::OPT::20%20per%20page", tooltip="https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page", color="gray50", style="dashed,rounded", fillcolor="whitesmoke"];
   "https://app.pointer.ai/knowledge::TRANS::Analytics" [label="/knowledge::TRANS::Analytics", tooltip="https://app.pointer.ai/knowledge::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/playground::TRANS::Analytics" [label="/playground::TRANS::Analytics", tooltip="https://app.pointer.ai/playground::TRANS::Analytics", color="dodgerblue", style="dashed,rounded"];
-  "https://app.pointer.ai/playground::TRANS::Save & publish" [label="/playground::TRANS::Save%20&%20publish", tooltip="https://app.pointer.ai/playground::TRANS::Save & publish", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/playground::TRANS::Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support" [label="/playground::TRANS::Quick%20actions%20Invite%20team%20member%20Add%20to%20knowledge%20base%20Customize%20styling%20Vi…", tooltip="https://app.pointer.ai/playground::TRANS::Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/playground::TRANS::Navigation Analytics Knowledge Playground Settings" [label="/playground::TRANS::Navigation%20Analytics%20Knowledge%20Playground%20Settings", tooltip="https://app.pointer.ai/playground::TRANS::Navigation Analytics Knowledge Playground Settings", color="dodgerblue", style="dashed,rounded"];
   "https://app.pointer.ai/analytics" -> "https://app.pointer.ai/settings?tab=account" [label="My account"];
@@ -135,8 +133,6 @@ digraph G {
   "https://app.pointer.ai/settings?tab=setup" -> "https://app.pointer.ai/settings?tab=setup::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
   "https://app.pointer.ai/settings?tab=setup" -> "https://app.pointer.ai/settings?tab=setup::TRANS::Check connection" [style=dotted, color=dodgerblue, label="Check connection"];
   "https://app.pointer.ai/settings?tab=setup" -> "https://app.pointer.ai/settings?tab=setup::TRANS::Back to dashboard" [style=dotted, color=dodgerblue, label="Back to dashboard"];
-  "https://app.pointer.ai/settings?tab=keys::TRANS::Create key" -> "https://app.pointer.ai/settings?tab=keys::TRANS::Create key::OPT::Cancel" [style=dashed, color=gray50, label="Cancel"];
-  "https://app.pointer.ai/settings?tab=keys::TRANS::Create key::OPT::Cancel" -> "https://app.pointer.ai/settings?tab=keys" [style=dashed, color=gray50, label="Cancel"];
   "https://app.pointer.ai/settings?tab=keys" -> "https://app.pointer.ai/settings?tab=keys::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
   "https://app.pointer.ai/settings?tab=keys" -> "https://app.pointer.ai/settings?tab=keys::TRANS::Create key" [style=dotted, color=dodgerblue, label="Create key"];
   "https://app.pointer.ai/settings?tab=team" -> "https://app.pointer.ai/settings?tab=team::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
@@ -146,10 +142,10 @@ digraph G {
   "https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days" -> "https://app.pointer.ai/analytics?tab=overview" [style=dashed, color=gray50, label="Last 7 days"];
   "https://app.pointer.ai/analytics?tab=overview" -> "https://app.pointer.ai/analytics?tab=overview::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
   "https://app.pointer.ai/analytics?tab=overview" -> "https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days" [style=dotted, color=dodgerblue, label="Last 7 days"];
+  "https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page" -> "https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page::OPT::10 per page" [style=dashed, color=gray50, label="10 per page"];
+  "https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page::OPT::10 per page" -> "https://app.pointer.ai/analytics?tab=conversations" [style=dashed, color=gray50, label="10 per page"];
   "https://app.pointer.ai/analytics?tab=conversations" -> "https://app.pointer.ai/analytics?tab=conversations::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
   "https://app.pointer.ai/analytics?tab=conversations" -> "https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page" [style=dotted, color=dodgerblue, label="10 per page"];
-  "https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page" -> "https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page::OPT::10 per page" [style=dashed, color=gray50, label="10 per page"];
-  "https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page::OPT::10 per page" -> "https://app.pointer.ai/analytics?tab=replays" [style=dashed, color=gray50, label="10 per page"];
   "https://app.pointer.ai/analytics?tab=replays" -> "https://app.pointer.ai/analytics?tab=replays::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
   "https://app.pointer.ai/analytics?tab=replays" -> "https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page" [style=dotted, color=dodgerblue, label="10 per page"];
   "https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page" -> "https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page" [style=dashed, color=gray50, label="20 per page"];
@@ -175,7 +171,6 @@ digraph G {
   "https://app.pointer.ai/playground" -> "https://app.pointer.ai/playground" [style=dashed, color=gray50, label="Switch to light preview"];
   "https://app.pointer.ai/playground" -> "https://app.pointer.ai/playground" [style=dashed, color=gray50, label="Home Chat"];
   "https://app.pointer.ai/playground" -> "https://app.pointer.ai/playground::TRANS::Analytics" [style=dotted, color=dodgerblue, label="Analytics"];
-  "https://app.pointer.ai/playground" -> "https://app.pointer.ai/playground::TRANS::Save & publish" [style=dotted, color=dodgerblue, label="Save & publish"];
   "https://app.pointer.ai/playground" -> "https://app.pointer.ai/playground::TRANS::Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support" [style=dotted, color=dodgerblue, label="Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support"];
   "https://app.pointer.ai/playground" -> "https://app.pointer.ai/playground::TRANS::Navigation Analytics Knowledge Playground Settings" [style=dotted, color=dodgerblue, label="Navigation Analytics Knowledge Playground Settings"];
 }

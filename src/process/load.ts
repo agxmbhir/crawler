@@ -67,7 +67,7 @@ export async function loadGraph(jsonlDir: string): Promise<SimpleGraph> {
     for (const e of edges) {
         const fromCanon = canonicalizeUrl(e.fromUrl);
         const toCanon = canonicalizeUrl(e.toUrl);
-        const rec: EdgeRec = { ...e, fromUrl: fromCanon, toUrl: toCanon };
+        const rec: EdgeRec = { ...e, fromUrl: fromCanon, toUrl: toCanon } as any;
         const arr = edgesByFromCanon.get(fromCanon) || [];
         arr.push(rec);
         edgesByFromCanon.set(fromCanon, arr);

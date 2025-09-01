@@ -7,6 +7,7 @@ import { SimpleGraph } from './load';
 export type SiteLabel = { domain: string; description: string };
 
 const DEFAULT_MODEL = 'claude-3-haiku-20240307';
+const SCHEMA_VERSION = 'v2-transition-options-1';
 
 function toPathQuery(u: string): string {
     try { const x = new URL(u); return x.pathname + x.search; } catch { return u; }
@@ -41,8 +42,17 @@ export class Labeller {
             system,
             messages: [{ role: 'user', content: user }],
         });
-        const t = (resp.content?.[0] as any)?.text || '';
-        try { return JSON.parse(t); } catch { return { _raw: t }; }
+        const stop = (resp as any).stop_reason;
+        const usage = (resp as any).usage;
+        const t = Array.isArray((resp as any).content)
+            ? (resp as any).content.map((b: any) => (b && b.type === 'text' && typeof b.text === 'string') ? b.text : '').join('')
+            : '';
+        if (stop === 'max_tokens') {
+            throw new Error(`LLM truncated at max_tokens=${max_tokens}. usage=${JSON.stringify(usage || {})}. First 200 chars: ${t.slice(0, 200)}`);
+        }
+        try { return JSON.parse(t); } catch {
+            throw new Error(`LLM returned non-JSON. First 500 chars: ${t.slice(0, 500)}`);
+        }
     }
 
     public async labelSite(g: SimpleGraph): Promise<SiteLabel> {
@@ -71,13 +81,30 @@ export class Labeller {
         const edges = g.edgesByFromCanon.get(urlCanon) || [];
         const navs = edges.filter(e => e.type === 'nav' && e.label).slice(0, maxNav).map(e => ({ kind: 'nav', label: e.label!, targetPath: toPathQuery(e.toUrl) }));
         const clicks = edges.filter(e => e.type === 'click' && e.label).slice(0, maxClicks).map(e => ({ kind: 'click', label: e.label! }));
-        const transitions = edges.filter(e => e.type === 'transition' && (e.trigger || (e.options && e.options.length))).slice(0, maxTransitions).flatMap(e => {
-            const trigger = e.trigger || 'Open options';
-            const opts = (e.options || []).slice(0, maxTransitions).map(opt => ({ kind: 'transition', label: opt, trigger }));
-            return [{ kind: 'transition', label: trigger }, ...opts];
-        });
+
+        // Transitions: page -> transitionNode (type=transition); then transitionNode -> optionNode (type=click);
+        // Prefer explicit trigger/option fields from JSONL if present.
+        const transitionEdges = edges.filter(e => e.type === 'transition').slice(0, maxTransitions);
+        const transitions: any[] = [];
+        for (const te of transitionEdges) {
+            const trigger = te.trigger || te.label || 'Open options';
+            const transOut = g.edgesByFromCanon.get(te.toUrl) || [];
+            // Candidate option edges: click edges with option label or label
+            const optionEdges = transOut.filter(e => e.type === 'click');
+            const opts = optionEdges.slice(0, maxTransitions).map(oe => {
+                const optLabel = oe.option || oe.label || 'Option';
+                const optOut = g.edgesByFromCanon.get(oe.toUrl) || [];
+                const navEdge = optOut.find(x => x.type === 'nav');
+                const targetPath = navEdge ? toPathQuery(navEdge.toUrl) : undefined;
+                return { kind: 'transition', label: optLabel, trigger, targetPath };
+            });
+            transitions.push({ kind: 'transition', label: trigger });
+            transitions.push(...opts);
+        }
         return [...navs, ...clicks, ...transitions];
     }
+
+    // Fallbacks removed to propagate errors
 
     private pageCtxFor(g: SimpleGraph, urlCanon: string, limits: { maxNav: number; maxTransitions: number; maxClicks: number }) {
         const section = sectionOf(urlCanon);
@@ -87,7 +114,7 @@ export class Labeller {
     }
 
     private hashInput(site: SiteLabel, pageCtx: any): string {
-        const s = JSON.stringify({ site, pageCtx });
+        const s = JSON.stringify({ v: SCHEMA_VERSION, site, pageCtx });
         return createHash('sha256').update(s).digest('hex');
     }
 
@@ -122,17 +149,53 @@ export class Labeller {
         throw lastErr;
     }
 
-    private async labelBatch(site: SiteLabel, pagesCtx: any[]): Promise<any[]> {
-        const system = 'You label pages and their clickables in batch for an automation agent. Output JSON array only.';
-        const payload = { site, pages: pagesCtx };
+    // Per-page chunked labeling to avoid truncation
+    private chunk<T>(arr: T[], size: number): T[][] {
+        const out: T[][] = [];
+        for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+        return out;
+    }
+
+    private async labelActionsChunk(site: SiteLabel, urlCanon: string, section: string, tab: string | undefined, clickablesChunk: any[], offset: number): Promise<any[]> {
+        const system = 'You label actions for browser automation. Output JSON object only.';
+        const payload = { site, page: { urlCanon, section, tab }, offset, clickables: clickablesChunk };
         const prompt =
-            `For each page in the input, return one result in the same order.\n` +
-            `For each page, produce: { urlCanon, description (≤1 sentence), tags[3-6], actions[1:1 with clickables] }.\n` +
-            `For each action, copy: kind, label, targetPath, trigger (if present). Add only: shortLabel (≤4 words), intentTags (2-5). Do not invent.\n` +
-            `Return an array where results[i] corresponds to pages[i].\n` +
+            `Return object: { actions }.\n` +
+            `actions MUST be same length and order as provided clickables.\n` +
+            `For each action COPY fields: { kind, label, targetPath, trigger } and ADD: { shortLabel (≤4 words), intentTags (2-5) }.\n` +
+            `Do not invent targets. If unknown, omit targetPath.\n` +
             `DATA: ${JSON.stringify(payload)}`;
-        const out = await this.callJSON(system, prompt, 2000);
-        return Array.isArray(out) ? out : (out?.results || []);
+        const maxTokens = 1500; // ample for a small chunk
+        const out = await this.callJSON(system, prompt, maxTokens);
+        const actions = Array.isArray(out?.actions) ? out.actions : [];
+        if (actions.length !== clickablesChunk.length) throw new Error(`LLM chunk length mismatch: got ${actions.length}, expected ${clickablesChunk.length}`);
+        return actions;
+    }
+
+    private async labelDescTags(site: SiteLabel, urlCanon: string, section: string, tab: string | undefined, clickablesSample: any[]): Promise<{ description: string; tags: string[] }> {
+        const system = 'You summarize a page for an automation agent. Output JSON object only.';
+        const payload = { site, page: { urlCanon, section, tab, clickablesSample } };
+        const prompt =
+            `Return: { description, tags }.\n` +
+            `description ≤ 1 sentence. tags: 3-6 short keywords.\n` +
+            `DATA: ${JSON.stringify(payload)}`;
+        const out = await this.callJSON(system, prompt, 600);
+        const description = typeof out?.description === 'string' ? out.description : '';
+        const tags = Array.isArray(out?.tags) ? out.tags.filter((t: any) => typeof t === 'string').slice(0, 8) : [];
+        return { description, tags };
+    }
+
+    private async labelPageChunked(site: SiteLabel, pageCtx: any): Promise<any> {
+        const { urlCanon, section, tab } = pageCtx;
+        const clickables = pageCtx.clickables || [];
+        const chunks = this.chunk(clickables, 12);
+        const actions: any[] = [];
+        for (let i = 0; i < chunks.length; i++) {
+            const chunkActs = await this.labelActionsChunk(site, urlCanon, section, tab, chunks[i], actions.length);
+            actions.push(...chunkActs);
+        }
+        const { description, tags } = await this.labelDescTags(site, urlCanon, section, tab, clickables.slice(0, 6));
+        return { urlCanon, description, tags, actions };
     }
 
     private async runPool<T, R>(items: T[], limit: number, worker: (item: T) => Promise<R>): Promise<R[]> {
@@ -159,47 +222,22 @@ export class Labeller {
             maxTransitions: opts?.maxTransitions ?? 12,
             maxClicks: opts?.maxClicks ?? 12,
         };
-        const batchSize = opts?.batchSize ?? 12;
-        const concurrency = opts?.concurrency ?? 3;
+        const concurrency = opts?.concurrency ?? 2;
         const cachePath = opts?.cachePath || path.join(path.dirname(destJsonlPath), 'page_labels_cache.jsonl');
 
         const dir = path.dirname(destJsonlPath);
         try { fs.mkdirSync(dir, { recursive: true }); } catch { }
         const stream = fs.createWriteStream(destJsonlPath);
 
-        const cache = this.readCache(cachePath);
         const pages = Array.from(g.pagesByCanon.keys());
-        const toLabel: { urlCanon: string; pageCtx: any; hash: string }[] = [];
-        for (const urlCanon of pages) {
-            const pageCtx = this.pageCtxFor(g, urlCanon, limits);
-            const hash = this.hashInput(site, pageCtx);
-            const cached = cache.get(hash);
-            if (cached) {
-                stream.write(JSON.stringify({ urlCanon, ...cached }) + '\n');
-                continue;
-            }
-            toLabel.push({ urlCanon, pageCtx, hash });
-        }
+        const toLabel: { urlCanon: string; pageCtx: any }[] = pages.map(urlCanon => ({ urlCanon, pageCtx: this.pageCtxFor(g, urlCanon, limits) }));
 
-        // Create batches
-        const batches: { items: { urlCanon: string; pageCtx: any; hash: string }[] }[] = [];
-        for (let i = 0; i < toLabel.length; i += batchSize) {
-            batches.push({ items: toLabel.slice(i, i + batchSize) });
-        }
-
-        const cacheAppends: { hash: string; result: any }[] = [];
-        await this.runPool(batches, concurrency, async (batch) => {
-            const pagesCtx = batch.items.map(it => it.pageCtx);
-            const results = await this.withRetries(() => this.labelBatch(site, pagesCtx));
-            for (let j = 0; j < batch.items.length; j++) {
-                const it = batch.items[j];
-                const result = results[j] || { urlCanon: it.pageCtx.urlCanon, _raw: undefined };
-                stream.write(JSON.stringify({ urlCanon: it.pageCtx.urlCanon, ...result }) + '\n');
-                cacheAppends.push({ hash: it.hash, result });
-            }
+        await this.runPool(toLabel, concurrency, async (it) => {
+            const out = await this.withRetries(() => this.labelPageChunked(site, it.pageCtx), 1, 500);
+            stream.write(JSON.stringify(out) + '\n');
+            return out;
         });
 
-        this.appendCache(cachePath, cacheAppends);
         stream.end();
     }
 
@@ -208,8 +246,7 @@ export class Labeller {
             maxNav: limits?.maxNav,
             maxTransitions: limits?.maxTransitions,
             maxClicks: limits?.maxClicks,
-            batchSize: 12,
-            concurrency: 3,
+            concurrency: 2,
         });
     }
 }

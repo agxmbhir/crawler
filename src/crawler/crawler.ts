@@ -61,6 +61,20 @@ function resolveHref(baseUrl: string, href?: string): string | null {
     }
 }
 
+function parseTriggerFromNode(node: string): string | null {
+    const ix = node.indexOf('::TRANS::');
+    if (ix < 0) return null;
+    const rest = node.slice(ix + '::TRANS::'.length);
+    const optIx = rest.indexOf('::OPT::');
+    return optIx >= 0 ? rest.slice(0, optIx) : rest;
+}
+
+function parseOptionFromNode(node: string): string | null {
+    const ix = node.indexOf('::OPT::');
+    if (ix < 0) return null;
+    return node.slice(ix + '::OPT::'.length);
+}
+
 function safeFileName(url: string): string {
     try {
         const u = new URL(url);
@@ -240,12 +254,22 @@ export class Crawler {
             for (const [src, edges] of Object.entries(actionGraph)) {
                 for (const e of edges) {
                     if (e.type === 'navigate') {
-                        ews.write(JSON.stringify({ type: 'nav', fromUrl: src, toUrl: e.to, label: e.label }) + "\n");
+                        const srcTrigger = parseTriggerFromNode(src);
+                        const srcOption = parseOptionFromNode(src);
+                        const rec: any = { type: 'nav', fromUrl: src, toUrl: e.to, label: e.label };
+                        if (srcTrigger) rec.trigger = srcTrigger;
+                        if (srcOption) rec.option = srcOption;
+                        ews.write(JSON.stringify(rec) + "\n");
                     } else if (e.type === 'transition') {
-                        // transition edge from page to transition node
-                        ews.write(JSON.stringify({ type: 'transition', fromUrl: src, toUrl: e.to, trigger: e.label, options: e.options || [] }) + "\n");
+                        const rec: any = { type: 'transition', fromUrl: src, toUrl: e.to, trigger: e.label };
+                        ews.write(JSON.stringify(rec) + "\n");
                     } else {
-                        ews.write(JSON.stringify({ type: 'click', fromUrl: src, toUrl: e.to, label: e.label }) + "\n");
+                        const srcTrigger = parseTriggerFromNode(src);
+                        const srcOption = parseOptionFromNode(src);
+                        const rec: any = { type: 'click', fromUrl: src, toUrl: e.to, label: e.label };
+                        if (srcTrigger) rec.trigger = srcTrigger;
+                        if (srcOption) rec.option = srcOption;
+                        ews.write(JSON.stringify(rec) + "\n");
                     }
                 }
             }

@@ -1,5 +1,5 @@
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days","toUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days::OPT::Last 7 days","label":"Last 7 days"}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days::OPT::Last 7 days","toUrl":"https://app.pointer.ai/analytics","label":"Last 7 days"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days","toUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days::OPT::Last 7 days","label":"Last 7 days","trigger":"Last 7 days"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days::OPT::Last 7 days","toUrl":"https://app.pointer.ai/analytics","label":"Last 7 days","trigger":"Last 7 days","option":"Last 7 days"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -12,8 +12,8 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/settings?tab=account","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/analytics::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days","trigger":"Last 7 days","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/analytics::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics","toUrl":"https://app.pointer.ai/analytics::TRANS::Last 7 days","trigger":"Last 7 days"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -26,10 +26,10 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Choose file","trigger":"Choose file","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Go to Slack","trigger":"Go to Slack","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Delete account","trigger":"Delete account","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Choose file","trigger":"Choose file"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Go to Slack","trigger":"Go to Slack"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=account","toUrl":"https://app.pointer.ai/settings?tab=account::TRANS::Delete account","trigger":"Delete account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -42,13 +42,13 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Choose file","trigger":"Choose file","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Project name","trigger":"Project name","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Project description","trigger":"Project description","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Delete project","trigger":"Delete project","options":[]}
-{"type":"click","fromUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection::OPT::Connection failed","label":"Connection failed"}
-{"type":"click","fromUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection::OPT::Connection failed","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Connection failed"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Choose file","trigger":"Choose file"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Project name","trigger":"Project name"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Project description","trigger":"Project description"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=general","toUrl":"https://app.pointer.ai/settings?tab=general::TRANS::Delete project","trigger":"Delete project"}
+{"type":"click","fromUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection::OPT::Connection failed","label":"Connection failed","trigger":"Check connection"}
+{"type":"click","fromUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection::OPT::Connection failed","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Connection failed","trigger":"Check connection","option":"Connection failed"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -61,11 +61,9 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection","trigger":"Check connection","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Back to dashboard","trigger":"Back to dashboard","options":[]}
-{"type":"click","fromUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Create key","toUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Create key::OPT::Cancel","label":"Cancel"}
-{"type":"click","fromUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Create key::OPT::Cancel","toUrl":"https://app.pointer.ai/settings?tab=keys","label":"Cancel"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Check connection","trigger":"Check connection"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=setup","toUrl":"https://app.pointer.ai/settings?tab=setup::TRANS::Back to dashboard","trigger":"Back to dashboard"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -78,8 +76,8 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=keys","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Create key","trigger":"Create key","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=keys","toUrl":"https://app.pointer.ai/settings?tab=keys::TRANS::Create key","trigger":"Create key"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -92,11 +90,11 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team::TRANS::Send invite","trigger":"Send invite","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team::TRANS::Owner","trigger":"Owner","options":[]}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days","toUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days","label":"Last 7 days"}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days","toUrl":"https://app.pointer.ai/analytics?tab=overview","label":"Last 7 days"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team::TRANS::Send invite","trigger":"Send invite"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/settings?tab=team","toUrl":"https://app.pointer.ai/settings?tab=team::TRANS::Owner","trigger":"Owner"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days","toUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days","label":"Last 7 days","trigger":"Last 7 days"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days::OPT::Last 7 days","toUrl":"https://app.pointer.ai/analytics?tab=overview","label":"Last 7 days","trigger":"Last 7 days","option":"Last 7 days"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -109,8 +107,10 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/settings?tab=account","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days","trigger":"Last 7 days","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=overview","toUrl":"https://app.pointer.ai/analytics?tab=overview::TRANS::Last 7 days","trigger":"Last 7 days"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page","toUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page::OPT::10 per page","label":"10 per page","trigger":"10 per page"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page::OPT::10 per page","toUrl":"https://app.pointer.ai/analytics?tab=conversations","label":"10 per page","trigger":"10 per page","option":"10 per page"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -123,10 +123,8 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/settings?tab=account","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page","trigger":"10 per page","options":[]}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page","toUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page::OPT::10 per page","label":"10 per page"}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page::OPT::10 per page","toUrl":"https://app.pointer.ai/analytics?tab=replays","label":"10 per page"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=conversations","toUrl":"https://app.pointer.ai/analytics?tab=conversations::TRANS::10 per page","trigger":"10 per page"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -139,10 +137,10 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/settings?tab=account","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page","trigger":"10 per page","options":[]}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page","toUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page","label":"20 per page"}
-{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page","toUrl":"https://app.pointer.ai/analytics?tab=logs","label":"20 per page"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=replays","toUrl":"https://app.pointer.ai/analytics?tab=replays::TRANS::10 per page","trigger":"10 per page"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page","toUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page","label":"20 per page","trigger":"20 per page"}
+{"type":"click","fromUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page::OPT::20 per page","toUrl":"https://app.pointer.ai/analytics?tab=logs","label":"20 per page","trigger":"20 per page","option":"20 per page"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -155,8 +153,8 @@
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/knowledge","label":"Knowledge"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/playground","label":"Playground"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/settings?tab=account","label":"Settings"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page","trigger":"20 per page","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/analytics?tab=logs","toUrl":"https://app.pointer.ai/analytics?tab=logs::TRANS::20 per page","trigger":"20 per page"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -173,7 +171,7 @@
 {"type":"click","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/knowledge","label":"Add file"}
 {"type":"click","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/knowledge","label":"Add link"}
 {"type":"click","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/knowledge","label":"Clear cache"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/knowledge::TRANS::Analytics","trigger":"Analytics","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/knowledge","toUrl":"https://app.pointer.ai/knowledge::TRANS::Analytics","trigger":"Analytics"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/settings?tab=account","label":"My account"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/settings?tab=general","label":"General"}
 {"type":"nav","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/settings?tab=setup","label":"Setup"}
@@ -199,7 +197,6 @@
 {"type":"click","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground","label":"Chat"}
 {"type":"click","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground","label":"Switch to light preview"}
 {"type":"click","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground","label":"Home Chat"}
-{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Analytics","trigger":"Analytics","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Save & publish","trigger":"Save & publish","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support","trigger":"Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support","options":[]}
-{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Navigation Analytics Knowledge Playground Settings","trigger":"Navigation Analytics Knowledge Playground Settings","options":[]}
+{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Analytics","trigger":"Analytics"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support","trigger":"Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support"}
+{"type":"transition","fromUrl":"https://app.pointer.ai/playground","toUrl":"https://app.pointer.ai/playground::TRANS::Navigation Analytics Knowledge Playground Settings","trigger":"Navigation Analytics Knowledge Playground Settings"}

@@ -76,6 +76,31 @@
   ],
   "edgesByFrom": [
     {
+      "fromCanon": "https://app.pointer.ai/analytics::TRANS::Last%207%20days",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics::TRANS::Last%207%20days",
+          "toUrl": "https://app.pointer.ai/analytics::TRANS::Last%207%20days::OPT::Last%207%20days",
+          "label": "Last 7 days",
+          "trigger": "Last 7 days"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics::TRANS::Last%207%20days::OPT::Last%207%20days",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics::TRANS::Last%207%20days::OPT::Last%207%20days",
+          "toUrl": "https://app.pointer.ai/analytics",
+          "label": "Last 7 days",
+          "trigger": "Last 7 days",
+          "option": "Last 7 days"
+        }
+      ]
+    },
+    {
       "fromCanon": "https://app.pointer.ai/analytics",
       "edges": [
         {
@@ -151,36 +176,16 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics",
-          "toUrl": "https://app.pointer.ai/analytics",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/analytics",
-          "toUrl": "https://app.pointer.ai/analytics",
-          "label": "Last 7 days"
+          "toUrl": "https://app.pointer.ai/analytics::TRANS::Analytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics",
-          "toUrl": "https://app.pointer.ai/analytics",
-          "trigger": "Last 7 days",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/analytics::TRANS::Last%207%20days",
+          "trigger": "Last 7 days"
         }
       ]
     },
@@ -260,48 +265,28 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=account",
-          "toUrl": "https://app.pointer.ai/settings?tab=account",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=account",
-          "toUrl": "https://app.pointer.ai/settings?tab=account",
-          "label": "Choose file"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=account",
-          "toUrl": "https://app.pointer.ai/settings?tab=account",
-          "label": "Go to Slack"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=account",
-          "toUrl": "https://app.pointer.ai/settings?tab=account",
-          "label": "Delete account"
+          "toUrl": "https://app.pointer.ai/settings?tab=account%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=account",
-          "toUrl": "https://app.pointer.ai/settings?tab=account",
-          "trigger": "Analytics",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/settings?tab=account%3A%3ATRANS%3A%3AChoose%20file",
+          "trigger": "Choose file"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account%3A%3ATRANS%3A%3AGo%20to%20Slack",
+          "trigger": "Go to Slack"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=account",
+          "toUrl": "https://app.pointer.ai/settings?tab=account%3A%3ATRANS%3A%3ADelete%20account",
+          "trigger": "Delete account"
         }
       ]
     },
@@ -381,54 +366,59 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=general",
-          "toUrl": "https://app.pointer.ai/settings?tab=general",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=general",
-          "toUrl": "https://app.pointer.ai/settings?tab=general",
-          "label": "Choose file"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=general",
-          "toUrl": "https://app.pointer.ai/settings?tab=general",
-          "label": "Delete project"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=general",
-          "toUrl": "https://app.pointer.ai/settings?tab=general",
-          "label": "Project name"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=general",
-          "toUrl": "https://app.pointer.ai/settings?tab=general",
-          "label": "Project description"
+          "toUrl": "https://app.pointer.ai/settings?tab=general%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=general",
-          "toUrl": "https://app.pointer.ai/settings?tab=general",
-          "trigger": "Analytics",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/settings?tab=general%3A%3ATRANS%3A%3AChoose%20file",
+          "trigger": "Choose file"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general%3A%3ATRANS%3A%3AProject%20name",
+          "trigger": "Project name"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general%3A%3ATRANS%3A%3AProject%20description",
+          "trigger": "Project description"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=general",
+          "toUrl": "https://app.pointer.ai/settings?tab=general%3A%3ATRANS%3A%3ADelete%20project",
+          "trigger": "Delete project"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ACheck%20connection",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ACheck%20connection",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ACheck%20connection%3A%3AOPT%3A%3AConnection%20failed",
+          "label": "Connection failed",
+          "trigger": "Check connection"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ACheck%20connection%3A%3AOPT%3A%3AConnection%20failed",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ACheck%20connection%3A%3AOPT%3A%3AConnection%20failed",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Connection failed",
+          "trigger": "Check connection",
+          "option": "Connection failed"
         }
       ]
     },
@@ -508,51 +498,111 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
-          "toUrl": "https://app.pointer.ai/settings?tab=setup",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
-          "toUrl": "https://app.pointer.ai/settings?tab=setup",
-          "label": "Check connection"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=setup",
-          "toUrl": "https://app.pointer.ai/settings?tab=setup",
-          "label": "Back to dashboard"
+          "toUrl": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
-          "toUrl": "https://app.pointer.ai/settings?tab=setup",
-          "trigger": "Analytics",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ACheck%20connection",
+          "trigger": "Check connection"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup%3A%3ATRANS%3A%3ABack%20to%20dashboard",
+          "trigger": "Back to dashboard"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/settings?tab=keys",
+      "edges": [
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
           "toUrl": "https://app.pointer.ai/settings?tab=setup",
-          "trigger": "Check connection",
-          "options": [
-            "Checking connection"
-          ]
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Settings"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys%3A%3ATRANS%3A%3ACreate%20key",
+          "trigger": "Create key"
         }
       ]
     },
@@ -632,45 +682,47 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
-          "toUrl": "https://app.pointer.ai/settings?tab=team",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/settings?tab=team",
-          "toUrl": "https://app.pointer.ai/settings?tab=team",
-          "label": "Send invite"
+          "toUrl": "https://app.pointer.ai/settings?tab=team%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
-          "toUrl": "https://app.pointer.ai/settings?tab=team",
-          "trigger": "Analytics",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/settings?tab=team%3A%3ATRANS%3A%3ASend%20invite",
+          "trigger": "Send invite"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
-          "toUrl": "https://app.pointer.ai/settings?tab=team",
-          "trigger": "Owner",
-          "options": [
-            "Owner"
-          ]
+          "toUrl": "https://app.pointer.ai/settings?tab=team%3A%3ATRANS%3A%3AOwner",
+          "trigger": "Owner"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3ALast%207%20days",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3ALast%207%20days",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3ALast%207%20days%3A%3AOPT%3A%3ALast%207%20days",
+          "label": "Last 7 days",
+          "trigger": "Last 7 days"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3ALast%207%20days%3A%3AOPT%3A%3ALast%207%20days",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3ALast%207%20days%3A%3AOPT%3A%3ALast%207%20days",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Last 7 days",
+          "trigger": "Last 7 days",
+          "option": "Last 7 days"
         }
       ]
     },
@@ -750,36 +802,41 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
-          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
-          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
-          "label": "Last 7 days"
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=overview",
-          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
-          "trigger": "Last 7 days",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview%3A%3ATRANS%3A%3ALast%207%20days",
+          "trigger": "Last 7 days"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3A10%20per%20page",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3A10%20per%20page",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3A10%20per%20page%3A%3AOPT%3A%3A10%20per%20page",
+          "label": "10 per page",
+          "trigger": "10 per page"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3A10%20per%20page%3A%3AOPT%3A%3A10%20per%20page",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3A10%20per%20page%3A%3AOPT%3A%3A10%20per%20page",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "10 per page",
+          "trigger": "10 per page",
+          "option": "10 per page"
         }
       ]
     },
@@ -859,36 +916,16 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
-          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
-          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
-          "label": "10 per page"
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=conversations",
-          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
-          "trigger": "10 per page",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations%3A%3ATRANS%3A%3A10%20per%20page",
+          "trigger": "10 per page"
         }
       ]
     },
@@ -968,36 +1005,41 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
-          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
-          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
-          "label": "10 per page"
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=replays",
-          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
-          "trigger": "10 per page",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays%3A%3ATRANS%3A%3A10%20per%20page",
+          "trigger": "10 per page"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3A20%20per%20page",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3A20%20per%20page",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3A20%20per%20page%3A%3AOPT%3A%3A20%20per%20page",
+          "label": "20 per page",
+          "trigger": "20 per page"
+        }
+      ]
+    },
+    {
+      "fromCanon": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3A20%20per%20page%3A%3AOPT%3A%3A20%20per%20page",
+      "edges": [
+        {
+          "type": "click",
+          "fromUrl": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3A20%20per%20page%3A%3AOPT%3A%3A20%20per%20page",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "20 per page",
+          "trigger": "20 per page",
+          "option": "20 per page"
         }
       ]
     },
@@ -1077,36 +1119,16 @@
           "label": "Settings"
         },
         {
-          "type": "click",
+          "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
-          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
-          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
-          "label": "20 per page"
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3AAnalytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/analytics?tab=logs",
-          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
-          "trigger": "20 per page",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs%3A%3ATRANS%3A%3A20%20per%20page",
+          "trigger": "20 per page"
         }
       ]
     },
@@ -1189,12 +1211,6 @@
           "type": "click",
           "fromUrl": "https://app.pointer.ai/knowledge",
           "toUrl": "https://app.pointer.ai/knowledge",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/knowledge",
-          "toUrl": "https://app.pointer.ai/knowledge",
           "label": "Add rule"
         },
         {
@@ -1214,6 +1230,12 @@
           "fromUrl": "https://app.pointer.ai/knowledge",
           "toUrl": "https://app.pointer.ai/knowledge",
           "label": "Clear cache"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/knowledge",
+          "toUrl": "https://app.pointer.ai/knowledge::TRANS::Analytics",
+          "trigger": "Analytics"
         }
       ]
     },
@@ -1296,12 +1318,6 @@
           "type": "click",
           "fromUrl": "https://app.pointer.ai/playground",
           "toUrl": "https://app.pointer.ai/playground",
-          "label": "Analytics"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/playground",
-          "toUrl": "https://app.pointer.ai/playground",
           "label": "Display"
         },
         {
@@ -1374,59 +1390,25 @@
           "type": "click",
           "fromUrl": "https://app.pointer.ai/playground",
           "toUrl": "https://app.pointer.ai/playground",
-          "label": "Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/playground",
-          "toUrl": "https://app.pointer.ai/playground",
-          "label": "Navigation Analytics Knowledge Playground Settings"
-        },
-        {
-          "type": "click",
-          "fromUrl": "https://app.pointer.ai/playground",
-          "toUrl": "https://app.pointer.ai/playground",
           "label": "Home Chat"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/playground",
-          "toUrl": "https://app.pointer.ai/playground",
-          "trigger": "Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/playground::TRANS::Analytics",
+          "trigger": "Analytics"
         },
         {
           "type": "transition",
           "fromUrl": "https://app.pointer.ai/playground",
-          "toUrl": "https://app.pointer.ai/playground",
-          "trigger": "Navigation Analytics Knowledge Playground Settings",
-          "options": [
-            "My account",
-            "General",
-            "Setup",
-            "Keys",
-            "Team",
-            "Overview",
-            "Conversations",
-            "Sessions",
-            "Logs",
-            "Knowledge",
-            "Playground",
-            "Settings"
-          ]
+          "toUrl": "https://app.pointer.ai/playground::TRANS::Quick%20actions%20Invite%20team%20member%20Add%20to%20knowledge%20base%20Customize%20styling%20View%20docs%20Contact%20support",
+          "trigger": "Quick actions Invite team member Add to knowledge base Customize styling View docs Contact support"
+        },
+        {
+          "type": "transition",
+          "fromUrl": "https://app.pointer.ai/playground",
+          "toUrl": "https://app.pointer.ai/playground::TRANS::Navigation%20Analytics%20Knowledge%20Playground%20Settings",
+          "trigger": "Navigation Analytics Knowledge Playground Settings"
         }
       ]
     }
@@ -1468,6 +1450,12 @@
         {
           "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=account",
+          "label": "My account"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
           "toUrl": "https://app.pointer.ai/settings?tab=account",
           "label": "My account"
         },
@@ -1586,6 +1574,12 @@
         },
         {
           "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=general",
+          "label": "General"
+        },
+        {
+          "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
           "toUrl": "https://app.pointer.ai/settings?tab=general",
           "label": "General"
@@ -1663,6 +1657,12 @@
         },
         {
           "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=setup",
+          "label": "Setup"
+        },
+        {
+          "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
           "toUrl": "https://app.pointer.ai/settings?tab=setup",
           "label": "Setup"
@@ -1734,6 +1734,18 @@
         },
         {
           "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Keys"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/settings?tab=keys",
+          "label": "Settings"
+        },
+        {
+          "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
           "toUrl": "https://app.pointer.ai/settings?tab=keys",
           "label": "Keys"
@@ -1800,6 +1812,12 @@
         {
           "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/settings?tab=team",
+          "label": "Team"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
           "toUrl": "https://app.pointer.ai/settings?tab=team",
           "label": "Team"
         },
@@ -1882,6 +1900,12 @@
         },
         {
           "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/analytics?tab=overview",
+          "label": "Overview"
+        },
+        {
+          "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
           "toUrl": "https://app.pointer.ai/analytics?tab=overview",
           "label": "Overview"
@@ -1948,6 +1972,12 @@
         {
           "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
+          "label": "Conversations"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
           "toUrl": "https://app.pointer.ai/analytics?tab=conversations",
           "label": "Conversations"
         },
@@ -2024,6 +2054,12 @@
         },
         {
           "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/analytics?tab=replays",
+          "label": "Sessions"
+        },
+        {
+          "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
           "toUrl": "https://app.pointer.ai/analytics?tab=replays",
           "label": "Sessions"
@@ -2090,6 +2126,12 @@
         {
           "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/analytics?tab=logs",
+          "label": "Logs"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
           "toUrl": "https://app.pointer.ai/analytics?tab=logs",
           "label": "Logs"
         },
@@ -2166,6 +2208,12 @@
         },
         {
           "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
+          "toUrl": "https://app.pointer.ai/knowledge",
+          "label": "Knowledge"
+        },
+        {
+          "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=team",
           "toUrl": "https://app.pointer.ai/knowledge",
           "label": "Knowledge"
@@ -2232,6 +2280,12 @@
         {
           "type": "nav",
           "fromUrl": "https://app.pointer.ai/settings?tab=setup",
+          "toUrl": "https://app.pointer.ai/playground",
+          "label": "Playground"
+        },
+        {
+          "type": "nav",
+          "fromUrl": "https://app.pointer.ai/settings?tab=keys",
           "toUrl": "https://app.pointer.ai/playground",
           "label": "Playground"
         },
